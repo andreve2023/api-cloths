@@ -4,7 +4,7 @@ const schemaProduct = joi.object({
     name_product: joi.string().min(4).max(50).required(),
     image: joi.string().uri().required(),
     price: joi.number(),
-    description: joi.string().min(5).max(100),
+    description: joi.string().min(5),
     stock: joi.number().integer().required(),
     size: joi.array(),
     freeShopping: joi.boolean(),
