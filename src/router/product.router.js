@@ -8,6 +8,7 @@ const {searchProductByName} = require('../controllers/products/GET/searchProduct
 const {orderByNameProduct} = require('../controllers/products/GET/orderByName.controller');
 const {orderProductByPrice} = require('../controllers/products/GET/orderByPrice.controller');
 const {validatorHandlers} = require('../middlewares/validatorHandler');
+const upload = require('../middlewares/multer');
 const {schemaProduct, schemaProductById, schemaProductUpdate} = require('../schemas/product.schema');
 const router = Router();
 
@@ -21,12 +22,11 @@ router.get('/:id_product',
     validatorHandlers(schemaProductById, 'params') ,
     getProductById
 );
-
 router.post('/',
-    validatorHandlers(schemaProduct, 'body') ,
+    upload.single('image'),
+    validatorHandlers(schemaProduct),
     createProduct
 );
-
 router.delete('/delete_product/:id_product',
     validatorHandlers(schemaProductById, 'params') ,
     deleteProductById
@@ -37,4 +37,10 @@ router.put('/update-product/:id_product',
     updateProduct
 );
 
+// router.post('/',upload.single('image'),(req, res) => {
+//     // const data = JSON.parse(req.body.data);
+//     // const {name_product} = req.body;
+//     // console.log(name_product);
+//     // console.log(file);
+// });
 module.exports = router;

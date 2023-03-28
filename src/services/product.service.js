@@ -16,7 +16,7 @@ class ProductServices {
         });
     }
     async createProduct(body) {
-        const {name_product , image}=body
+        const {name_product, image} = body;
         const getProductsDb = await models.Products.findAll();
         const productFound = getProductsDb.find(product => {
             return product.name_product === name_product || product.image === image
