@@ -11,7 +11,7 @@ router.get('/', getAllCategories);
 router.get('/filter-category/:nameCategory', filterByCategory);
 router.post('/',
     passport.authenticate('jwt', {session: false}),
-    validatorHandlers(schemaCategory, 'body') ,
+    validatorHandlers(schemaCategory) ,
     createCategory
 );
 

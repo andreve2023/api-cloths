@@ -24,7 +24,7 @@ router.get('/:id_product',
 );
 router.post('/',
     upload.single('image'),
-    validatorHandlers(schemaProduct),
+    validatorHandlers(schemaProduct, 'body'),
     createProduct
 );
 router.delete('/delete_product/:id_product',
@@ -36,11 +36,4 @@ router.put('/update-product/:id_product',
     validatorHandlers(schemaProductUpdate, 'body'),
     updateProduct
 );
-
-// router.post('/',upload.single('image'),(req, res) => {
-//     // const data = JSON.parse(req.body.data);
-//     // const {name_product} = req.body;
-//     // console.log(name_product);
-//     // console.log(file);
-// });
 module.exports = router;

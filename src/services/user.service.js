@@ -11,9 +11,17 @@ class UserService {
             where: {email: email}
         })
     }
+    async findUserById(userId) {
+        const userFind = await models.User.findByPk(userId);
+        if (!userId) throw new boom.notFound('Usuario no encontrado');
+        else return userFind
+    }
     async createUser(body) {
+        let hashPass = ''
         const {email, password} = body;
-        const hashPass = await bcrypt.hash(password, 10)
+        if (password){
+            hashPass = await bcrypt.hash(password, 10)
+        }
         const userFind = await this.findUserByEmail(email);
         if (userFind) {
             throw new boom.conflict("El usuario ya se encuentra registrado");

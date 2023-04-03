@@ -16,7 +16,6 @@ const userSchema = {
     },
     cellPhone: {
         type: DataTypes.BIGINT,
-        allowNull: true
     },
     isAdmin: {
         type: DataTypes.BOOLEAN,
@@ -31,6 +30,10 @@ const userSchema = {
 class User extends Model {
     static associated(models) {
         this.hasMany(models.Address, {
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        })
+        this.hasMany(models.CartShopping, {
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
         })

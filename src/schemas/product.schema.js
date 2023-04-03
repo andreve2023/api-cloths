@@ -13,7 +13,6 @@ const schemaProduct = joi.object({
 
 const schemaProductUpdate = joi.object({
     name_product: joi.string().min(4).max(50),
-    image: joi.string().uri(),
     price: joi.number(),
     description: joi.string().min(5).max(100),
     stock: joi.number().integer(),

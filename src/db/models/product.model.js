@@ -40,6 +40,10 @@ class Products extends Model {
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
         })
+        this.hasMany(models.CartShopping, {
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        })
     }
     static config(sequelize) {
         return {
